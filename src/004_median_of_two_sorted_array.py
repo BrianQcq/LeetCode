@@ -47,5 +47,10 @@ class Solution(object):
 
 
 A=Solution()
-res=A.findMedian([3,4,5,6,7,8],[5,6,7,8,9,10])
+res=A.findMedian([1,2],[3,4])
 print(res)
+
+
+"""
+Unfinished!!!
+"""
