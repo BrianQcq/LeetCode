@@ -58,6 +58,9 @@ res2=A.fourSum([0,0,0,0],0)
 print(res)
 print(res2)
 
+
+
+# optimized version, using pointers instead of slicing. time complexity of slicing: O(n) worst case
 class Solution2(object):
 	def fourSum(self, nums, target):
 		def findNSum(l, r, target, N, result, results):
