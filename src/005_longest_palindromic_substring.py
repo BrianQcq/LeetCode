@@ -28,6 +28,8 @@ class Solution(object):
 			l -= 1; r += 1
 		return s[l+1:r]
 
+
+
 # DP solution
 
 class Solution2(object):
@@ -37,8 +39,20 @@ class Solution2(object):
 		maxLen = 1
 		start = 0
 		for i in range(len(s)):
-			pass
+			if i - maxLen >= 1 and s[i-maxLen-1:i+1] == s[i-maxLen-1:i+1][::-1]:
+				start = i - maxLen - 1
+				maxLen += 2
+				continue
+
+			if i - maxLen >= 0 and s[i-maxLen:i+1] == s[i-maxLen:i+1][::-1]:
+				start = i - maxLen
+				maxLen += 1
+		return s[start:start+maxLen]
 
 A=Solution()
-res=A.helper("babac", 1, 1)
+res=A.longestPalindrome("babac")
 print(res)
+
+B=Solution2()
+res2=B.longestPalindrome("mnnmmnnmm")
+print(res2)
