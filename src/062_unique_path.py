@@ -41,5 +41,5 @@ class Solution(object):
 
 
 A=Solution()
-res=A.uniquePaths_2(7,3)
+res=A.uniquePaths_2(4,2)
 print(res)
