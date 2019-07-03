@@ -28,7 +28,7 @@ class Solution(object):
 		return self.uniquePaths(m-1, n) + self.uniquePaths(m, n-1)
 
 
-	# DP algo
+	# DP algo, O(n^2) space
 
 	def uniquePaths_2(self, m, n):
 		table = [[1 for x in range(n)] for x in range(m)]
@@ -38,8 +38,15 @@ class Solution(object):
 				table[i][j] = table[i-1][j] + table[i][j-1]
 		return table[m-1][n-1]
 
+	# optimize to O(n) space
+	def uniquePaths_3(self, m, n):
+		dp = [1] * m
+		for i in range(1, n):
+			for j in range(1, m):
+				dp[j] += dp[j-1]
+		return dp[-1]
 
 
 A=Solution()
-res=A.uniquePaths_2(4,2)
+res=A.uniquePaths_3(3,3)
 print(res)
