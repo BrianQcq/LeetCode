@@ -59,5 +59,32 @@ class Solution(object):
 				nums[y][0] = 1
 
 A=Solution()
-res=A.uniqupaths([[0,0,0],[0,1,0],[0,0,0]])
+res=A.uniqupaths([[0,0,1,0,0],[0,0,0,0,0],[1,0,1,0,0],[0,0,0,0,0],[0,0,0,0,0]])
 print(res)
+
+
+class Solution2(object):
+	def uniquPaths(self, obstacleGrid):
+		if not obstacleGrid:
+			return
+		r, c = len(obstacleGrid), len(obstacleGrid[0])
+		dp = [[0 for x in range(c)] for x in range(r)]
+		dp[0][0] = 1 - obstacleGrid[0][0]
+		for i in range(1, r):
+			dp[i][0] = dp[i-1][0] * (1 - obstacleGrid[i][0])
+		for i in range(1,c):
+			dp[0][i] = dp[0][i-1] * (1 - obstacleGrid[0][i])
+		for i in range(1,r):
+			for j in range(1,c):
+				dp[i][j] = (dp[i-1][j] + dp[i][j-1]) * (1 - obstacleGrid[i][j])
+		return dp[-1][-1]
+		print(dp)
+
+
+B=Solution2()
+res=B.uniquPaths([[0,0,0,0],[0,0,1,0],[0,1,0,0],[0,0,0,0],[0,0,0,0]])
+print(res)
+
+C=Solution2()
+out=B.uniquPaths([[0,0,1,0,0],[0,0,0,0,0],[1,0,1,0,0],[0,0,0,0,0],[0,0,0,0,0]])
+print(out)
