@@ -60,8 +60,9 @@ class Solution(object):
 
 A=Solution()
 res=A.uniqupaths([[0,0,1,0,0],[0,0,0,0,0],[1,0,1,0,0],[0,0,0,0,0],[0,0,0,0,0]])
-print(res)
+#print(res)
 
+# more intuitive solution, O(n^2) space
 
 class Solution2(object):
 	def uniquPaths(self, obstacleGrid):
@@ -83,8 +84,32 @@ class Solution2(object):
 
 B=Solution2()
 res=B.uniquPaths([[0,0,0,0],[0,0,1,0],[0,1,0,0],[0,0,0,0],[0,0,0,0]])
-print(res)
+#print(res)
 
 C=Solution2()
 out=B.uniquPaths([[0,0,1,0,0],[0,0,0,0,0],[1,0,1,0,0],[0,0,0,0,0],[0,0,0,0,0]])
-print(out)
+#print(out)
+
+
+# Optimized O(n) space solution
+
+class Solution3():
+	def uniqupaths(self, obstacleGrid):
+		if not obstacleGrid:
+			return
+		r, c = len(obstacleGrid), len(obstacleGrid[0])
+		dp = [0] * c
+		dp[0] = 1 - obstacleGrid[0][0]
+		for i in range(1, c):
+			dp[i] = dp[i-1] * (1 - obstacleGrid[0][i])
+		for i in range(1, r):
+			dp[0] *= (1 - obstacleGrid[i][0])
+			#print(dp)
+			for j in range(1, c):
+				dp[j] = (dp[j-1] + dp[j]) * (1 - obstacleGrid[i][j])
+		#print(dp)
+		return dp[-1]
+
+D=Solution3()
+r=D.uniqupaths([[0,0,1,0,0],[0,0,0,0,0],[1,0,1,0,0],[0,0,0,0,0],[0,0,0,0,0]])
+print(r)
