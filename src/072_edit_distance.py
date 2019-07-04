@@ -43,7 +43,7 @@ class Solution(object):
 		replace = 1 + self.minDist(word1[1:], word2[1:])
 		return min(insert, delete, replace)
 
-	# DP algo
+	# DP algo, O(mn) space
 	def minDist_2(self, word1, word2):
 		m = len(word1)
 		n = len(word2)
@@ -64,6 +64,27 @@ class Solution(object):
 			#print(dp)
 		return dp[-1][-1]
 
+	# DP algo optimized O(n) version
+	def minDist_3(self, word1, word2):
+		m = len(word1)
+		n = len(word2)
+		dp = [[0 for x in range(n+1)] for x in range(2)]
+
+		for i in range(n+1):
+			dp[0][i] = i
+
+		for i in range(1, m+1):
+			dp[1][0] = i
+			for j in range(1, n+1):
+				if word1[i-1] == word2[j-1]:
+					dp[1][j] = dp[0][j-1]
+				else:
+					dp[1][j] = 1 + min(dp[0][j], dp[1][j-1], dp[0][j-1])
+			for i in range(n+1):
+				dp[0][i] = dp[1][i]
+		return dp[0][-1]
+
+
 A=Solution()
-out=A.minDist_2('intention','execution')
+out=A.minDist_3('intention','execution')
 print(out)
