@@ -18,7 +18,9 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
 class Solution(object):
 	def maxProfit(self, prices):
-		if len(prices) < 1:
+		#if len(prices) < 1:
+		#	return 0
+		if not prices:
 			return 0
 		min_price, max_profit = prices[0], 0
 		for price in prices[1:]:
@@ -27,5 +29,5 @@ class Solution(object):
 		return max_profit
 
 A=Solution()
-res=A.maxProfit([0,6,-3,7])
+res=A.maxProfit([])
 print(res)
