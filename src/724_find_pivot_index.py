@@ -8,6 +8,7 @@ class Solution(object):
 				return i
 		return -1
 
+	# reduced time complexity
 	def pivotIndex_2(self, nums):
 		total = sum(nums)
 		temp = 0
