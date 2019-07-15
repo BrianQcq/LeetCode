@@ -15,7 +15,9 @@ class Solution(object):
 	def longestCommonPrefix(self, s):
 		if not s:
 			return ""
-		shortest = min(s, key=len)
+		#shortest = min(s, key=len)
+		s.sort(key=len)
+		shortest=s[0]
 		# it can be optimized to shortest = s.sort(key=len)[0]
 		# because to find the min takes O(n), sort takes O(log n)
 		for i, char in enumerate(shortest):
@@ -26,5 +28,5 @@ class Solution(object):
 
 
 A=Solution()
-res=A.longestCommonPrefix(['a','ab'])
+res=A.longestCommonPrefix(['abccc','a','ab'])
 print(res)
