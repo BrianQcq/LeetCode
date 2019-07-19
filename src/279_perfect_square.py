@@ -10,10 +10,11 @@ class Solution(object):
 		while i * i <= n:
 			lst.append(i*i)
 			i += 1
-		#print(lst)
+		print(lst)
 		cnt = 0
 		toCheck = {n}
 		while toCheck:
+			print(toCheck)
 			cnt += 1
 			temp = set()
 			for x in toCheck:
@@ -42,5 +43,5 @@ class Solution(object):
 
 
 A=Solution()
-res=A.numSquares_2(18)
+res=A.numSquares(12)
 print(res)
