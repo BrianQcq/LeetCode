@@ -5,14 +5,13 @@ class Solution(object):
 		if not root:
 			return []
 		stack = [root]
-		res = []
+		output = []
 		while stack:
-			r = stack.pop()
-			if r is not None:
-				res.append(r.val)
-				if r.right is not None:
-					stack.append(r.right)
-				if r.left is not None:
-					stack.append(r.left)
-
-		return res
+			node = stack.pop()
+			if node is not None:
+				output.append(node.val)
+				if node.right is not None:
+					stack.append(node.right)
+				if node.left is not None:
+					stack.append(node.left)
+		return output
