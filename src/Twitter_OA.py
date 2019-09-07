@@ -85,7 +85,7 @@ def minDiscount_2(prices):
 		c.append(prices[i])
 	return res
 
-print(minDiscount_2([5, 4, 5, 1, 3, 3, 8, 2]))
+#print(minDiscount_2([5, 4, 5, 1, 3, 3, 8, 2]))
 
 def minDiscount_3(prices):
 	mono_stack = []
@@ -103,13 +103,72 @@ def minDiscount_3(prices):
 
 	return res
 
-print(minDiscount_3([5, 4, 5, 1, 3, 3, 8, 2]))
+#print(minDiscount_3([5, 4, 5, 1, 3, 3, 8, 2]))
 
 
 #
 #
-#
-#
-#
+# Activate Fountain
 #
 
+def activateFountain(A):
+	if not A:
+		return 0
+
+	n = len(A)
+	aux = list(range(n + 1))
+
+	for i, x in enumerate(A, 1):
+		aux[max(i - x, 1)] = min(i + x, n)
+
+	ans, l, r = 0, 1, aux[1]
+	while r <= n:
+		new_r, ans = r, ans + 1
+		while l <= r:
+			new_r = max(new_r, aux[l])
+			l += 1
+		if l > n:
+			break
+		r = max(new_r, aux[l])
+	return ans
+
+#print(activateFountain([0,0,0,0,0]))
+
+#
+# Possible path
+#
+
+def possiblePath(a,b,x,y):
+
+	def gcd(a, b):
+		return a if b == 0 else gcd(b, a%b)
+
+	return gcd(a, b) == gcd(x,y)
+
+#print(possiblePath(3,3,1,1))
+
+#
+#
+# Partition Array
+
+def part(arr, k):
+	length = len(arr)
+	print (length//k)
+	if length % k != 0:
+		return False
+
+	ref = {}
+	for num in arr:
+		if num in ref:
+			ref[num] += 1
+		else:
+			ref[num] = 1
+
+	print(ref.values())
+
+	for item in ref.values():
+		if item >= length // k:
+			return False
+	return True
+
+print(part([1,2,2,2], 3))
