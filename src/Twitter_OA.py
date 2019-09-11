@@ -171,4 +171,38 @@ def part(arr, k):
 			return False
 	return True
 
-print(part([1,2,2,2], 3))
+#print(part([1,2,2,2], 3))
+
+
+#
+#
+# Anagram Difference
+
+def anaDiff(s1, s2):
+	"""
+	s1: list[str]
+	s2: list[str]
+	"""
+
+	res = []
+	for i in range(len(s1)):
+		first = s1[i]
+		second = s2[i]
+		if len(first) != len(second):
+			res.append(-1)
+		else:
+			count = 0
+			char_count = [0] * 26
+
+			for j in range(len(first)):
+				char_count[ord(first[j]) - ord('a')] += 1
+
+			for j in range(len(second)):
+				char_count[ord(second[j]) - ord('a')] -= 1
+				if char_count[ord(second[j]) - ord('a')] < 0:
+					count += 1
+			res.append(count)
+
+	return res
+
+print(anaDiff(['act', 'qsw'], ['cats','swq']))
