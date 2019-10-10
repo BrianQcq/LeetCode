@@ -1,5 +1,6 @@
 import math
 import numpy as np
+import datetime
 
 def TravelDis(city1, city2, tripID):
 	earth_radius = 3958.8
@@ -26,3 +27,22 @@ def AccountNumberValid(s):
 
 print(AccountNumberValid('BADF00D5'))
 print(AccountNumberValid('1CC0FfEE'))
+
+
+class Hashtable:
+	_table = {}
+	_high_watermark = 0
+
+	def __init__(self, rawEvetns):
+		for item in rawEvetns:
+			epoch, tp, ky, vl = item.split('|')
+			
+
+	@property
+	def table(self):
+		return self._table
+	
+	@property
+	def high_watermark(self):
+		return self._high_watermark
+	
