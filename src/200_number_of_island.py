@@ -34,20 +34,6 @@ from collections import deque
 
 class Solution_BFS(object):
 
-	# def numIsland(self, grid):
-	# 	if not grid or not grid[0]:
-	# 		return 0
-	# 	count = 0
-	# 	for i in range(len(grid)):
-	# 		for j in range(len(grid[0])):
-	# 			if grid[i][j] == '1':
-	# 				self.bfs(grid, i, j)
-	# 				count += 1
-	# 	return count
-
-	# def bfs(self, grid, i, j):
-	# 	pass
-
 	def numIslands(self, grid):
 		if not grid or not grid[0]:
 			return 0
