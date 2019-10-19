@@ -84,10 +84,24 @@ class Solution_713(object):
 # Input: s = "abcda", queries = [[3,3,0],[1,2,0],[0,3,1],[0,3,2],[0,4,1]]
 # Output: [true,false,false,true,true]
 
+# Prefix Sum
 class Solution_1177(object):
 
 	def canMakePaliQueries(self, s, queries):
-		pass
+		cnt = [[0] * 26]
+		print(cnt)
+		print('==========')
+
+		for i, c in enumerate(s):
+			cnt.append(cnt[i][:])
+			cnt[i+1][ord(c)-ord('a')] += 1
+			print(cnt)
+
+		return [sum((cnt[hi + 1][i] - cnt[lo][i]) % 2 for i in range(26)) // 2 <= k for lo, hi, k in queries]
+
+test = Solution_1177()
+res = test.canMakePaliQueries('abcda', [[3,3,0],[1,2,0],[0,3,1],[0,3,2],[0,4,1]])
+print(res)
 
 
 
@@ -103,7 +117,7 @@ class Solution_1048(object):
 		word_dict = {}
 		for word in words:
 			word_dict[word] = 1
-			
+
 		res = 1
 		for word in words:
 			for i in range(len(word)):
