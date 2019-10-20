@@ -1,4 +1,15 @@
 # Definition for a Node.
+
+
+
+
+
+
+
+
+
+
+
 class Node(object):
 	def __init__(self, val, next, random):
 		self.val = val
