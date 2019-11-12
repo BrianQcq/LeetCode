@@ -18,32 +18,30 @@ class Solution(object):
 	def findMedian(self, nums1, nums2):
 		l = len(nums1) + len(nums2)
 		if l % 2 == 1:
-			return self.find_k_th(nums1, nums2, l//2)
+			return self.findkth(nums1, nums2, l//2)
 		else:
-			return (self.find_k_th(nums1, nums2, l//2) + self.find_k_th(nums1, nums2, l//2 - 1)) / 2
+			return (self.findkth(nums1,nums2,l//2 - 1) + self.findkth(nums1,nums2,l//2))/2.0
 
-
-	def find_k_th(self, A, B, k):
+	def findkth(self, A, B, k):
 		if not A:
 			return B[k]
 		if not B:
 			return A[k]
 
-		m = len(A) // 2
-		n = len(B) // 2
+		m, n = len(A)//2, len(B)//2
 		med_A = A[m]
 		med_B = B[n]
 
 		if m + n < k:
 			if med_A > med_B:
-				return self.find_k_th(A, B[n+1:], k - n -1)
+				return self.findkth(A, B[n+1:], k-n-1)
 			else:
-				return self.find_k_th(A[m+1:], B, k - m -1)
+				return self.findkth(A[m+1:], B, k-m-1)
 		else:
 			if med_A > med_B:
-				return self.find_k_th(A[:m], B, k)
+				return self.findkth(A[:m], B, k)
 			else:
-				return self.find_k_th(A, B[:n], k)
+				return self.findkth(A, B[:n], k)
 
 
 A=Solution()

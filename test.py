@@ -1,60 +1,38 @@
-# import sys 
-# if __name__ == "__main__":
-#     m, n = sys.stdin.readline().strip().split()
-#     temp = sys.stdin.readline().strip()
-#     salaries = list(map(int, temp.split()))
-#     print(salaries)
+class LongestPalin(object):
 
-#     ref = {}
-#     for salary in salaries:
-#         if salary not in ref:
-#             ref[salary] = 1
-#         else:
-#             ref[salary] += 1
-#     print(ref)
+    def findlongest(self, s):
+        res = ''
+        for i in range(len(s)):
+            temp = self.helper(s, i, i)
+            if len(temp) > len(res):
+                res = temp
+
+            temp = self.helper(s, i, i+1)
+            if len(temp) > len(res):
+                res = temp
+        return res
+
+    def helper(self, s, l, r):
+        if not s:
+            return ''
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            l -= 1
+            r += 1
+        return s[l+1:r]
+A=LongestPalin()
+res=A.findlongest('bccba')
+print(res)
 
 
-# import sys 
-# if __name__ == "__main__":
-#     num_set = int(sys.stdin.readline().strip())
-#     for i in range(num_set):
-# 	    n, k = sys.stdin.readline().strip().split()
-# 	    temp = sys.stdin.readline().strip()
-# 	    zhuzi = list(map(int, temp.split()))
-	    
-# 	    n, k = int(n), int(k)
-# 	    dp = [0] * n
-# 	    for i in range(k+1):
-# 	        if zhuzi[i] > zhuzi[0]:
-# 	            dp[i] = 1
-# 	    for i in range(k, n):
-# 	        temp = []
-# 	        for j in range(i-k,i):
-# 	            if zhuzi[i] > zhuzi[j]:
-# 	                temp.append(dp[j]+1)
-# 	            else:
-# 	                temp.append(dp[j])
-# 	        dp[i] = min(temp)
+class ReverseLinkedList(object):
 
-# 	    if dp[-1] <= 1:
-# 	        print('YES')
-# 	    else:
-# 	        print('NO')
-
-import sys 
-if __name__ == "__main__":
-    n, B = sys.stdin.readline().strip().split()
-    temp = sys.stdin.readline().strip()
-    nums = list(map(int, temp.split()))
-    
-    n, B = int(n), int(B)
-    min_diff = float('inf')
-    
-    for i in range(1, B//2 + 1):
-        temp_nums = [1] * (n - 2)
-        if B % i == 0:
-            temp_nums += [B//i, i]
-            temp_diff = sum([abs(nums[i]-temp_nums[i]) for i in range(n)])
-            if temp_diff < min_diff:
-                min_diff = temp_diff
-    print(min_diff)
+    def reverse(self, head):
+        if not head:
+            return None
+        prev, cur = None, head
+        while cur:
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
+        return prev

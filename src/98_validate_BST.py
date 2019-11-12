@@ -1,8 +1,9 @@
 
 class Solution(object):
-	def isValid(self, root, lo=float('-inf'), hi=float('inf')):
+
+	def isValidBST(self, root, lo = -float('inf'), hi = float('inf')):
 		if not root:
 			return True
-		if root.val <= lo or root.val >= hi:
+		if root.val >= hi or root.val <= lo:
 			return False
-		return self.isValid(root.left, lo, min(root.val, hi)) and self.isValid(root.right, max(lo, root.val), hi)
+		return self.isValidBST(root.left, lo, root.val) and self.isValidBST(root.right, root.val, hi)
